@@ -1,0 +1,8 @@
+prefix=/home/sahilsaxena/ros_workspaces/lab2/devel
+
+Name: lab2_turtlesim
+Description: Description of lab2_turtlesim
+Version: 0.0.0
+Cflags: -I/home/sahilsaxena/ros_workspaces/lab2/devel/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs roscpp rospy std_msgs turtlesim
