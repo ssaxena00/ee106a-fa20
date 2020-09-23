@@ -136,9 +136,14 @@ def rotation_3d(omega, theta):
     if not omega.shape == (3,):
         raise TypeError('omega must be a 3-vector')
     
-    rot = np.eye(3) + skew_3d(omega)/np.linalg.norm(omega)*np.sin(np.linalg.norm(omega)*theta)
-    rot += np.linalg.matrix_power(skew_3d(omega), 2) / (np.linalg.norm(omega) ** 2) * (1 - np.cos(np.linalg.norm(omega)*  theta))
-    
+    rot = np.eye(3) #identity matrix
+    if np.allclose(omega, 0): 
+        return rot
+
+    norm = np.linalg.norm(omega)
+
+    rot += (skew_3d(omega) / norm) * np.sin(norm*theta)  #second term here
+    rot += (np.linalg.matrix_power(skew_3d(omega), 2) / (norm**2)) * (1 - np.cos(norm * theta))
     return rot
 
 def hat_3d(xi):
@@ -160,8 +165,8 @@ def hat_3d(xi):
     v = xi[0:3]
     
     xi_hat = np.zeros((4,4))
-    xi_hat[0:3,0:3] = w_hat[0:3,0:3]
-    xi_hat[0:3,3] = v
+    xi_hat[0:3, 0:3] = w_hat[0:3, 0:3]
+    xi_hat[0:3, 3] = v
     return xi_hat
 
 def homog_3d(xi, theta):
@@ -180,41 +185,30 @@ def homog_3d(xi, theta):
     if not xi.shape == (6,):
         raise TypeError('xi must be a 6-vector')
 
-    omega = np.array([xi[3:6]])
+    omega = np.array(xi[3:])
     omega_hat = skew_3d(xi[3:6])    
-    omega_T = np.transpose(omega)
-    v = np.array([xi[0:3]])
-    
+    v = np.array(xi[0:3]).T
+
     rot_mat = rotation_3d(xi[3:6], theta)    
-    omega_mag = np.linalg.norm(omega, 2)
+    omega_norm = np.linalg.norm(omega)
 
     I = np.identity(3)
 
-    term1 = np.dot((I - rot_mat), (np.dot(omega_hat, np.transpose(v))))
-    term2 = theta * np.dot(np.dot(omega_T, omega), np.transpose(v))
-    p_term = (term1 + term2) / (omega_mag ** 2)
+    term1 = np.dot((I - rot_mat), (np.dot(omega_hat, v)))
+    term2 = theta * np.dot(omega, np.dot(omega.T, v))
+    term = (term1 + term2) / (omega_norm**2)
 
     g = np.zeros((4,4))
 
-    g[0:3,0:3] = rot_mat[0:3,0:3]
-    g[0:3,3] = np.transpose(term[0:3])
-    g[3,3] = 1
-
-    v = xi[:3]
-    w = xi[3:]
-    I = np.eye(3)
-    if np.allclose(w, 0):
-        # Pure translation
-        R = I
-        p = v * theta
+    if np.allclose(omega, 0): 
+        g[0:3, 0:3] = I
+        g[0:3, 3] = theta * v
     else:
-        # Translation and rotation
-        R = rot_mat
-        p = p_term
-    g = np.eye(4)
-    g[:3, :3] = R
-    g[:3, 3] = p
+        g[0:3, 0:3] = rot_mat[0:3, 0:3]
+        g[0:3, 3] = term.T
     
+    g[3, 3] = 1
+
     return g
 
 def prod_exp(xi, theta):
@@ -239,10 +233,10 @@ def prod_exp(xi, theta):
     g = np.identity(4)
     
     for i in range(len(theta)):
-        twist = xi[:,i]
+        twist = xi[:, i]
         th = theta[i]
-        mat = homog_3d(twist,th)
-        g = np.dot(g,mat)
+        mat = homog_3d(twist, th)
+        g = np.dot(g, mat)
 
     return g
 
