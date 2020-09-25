@@ -4,7 +4,6 @@ Lab 3, task 1
 """
 
 import numpy as np
-import scipy as sp
 import kin_func_skeleton as kfs
 
 def lab3(thetas):
@@ -27,7 +26,6 @@ def lab3(thetas):
     w[0:3,4] = [ 0.7065,  0.7077, -0.0038]
     w[0:3,5] = [-0.7077,  0.7065, -0.0122]
     w[0:3,6] = [ 0.7065,  0.7077, -0.0038]
-    # w[0:3,7] = [0, 0, 0]
 
     R = np.array([[0.0076, 0.0001, -1.0000],
                   [-0.7040, 0.7102, -0.0053],
@@ -39,8 +37,8 @@ def lab3(thetas):
         t[:,i][0:3] = np.cross(-w[0:3, i], q[0:3, i])
         t[:,i][3:6] = w[0:3, i]
 
-    chain = kfs.prod_exp(t, thetas)
-    gst_0 = np.vstack((np.hstack((R, q[0:3,7])), np.array([0, 0, 0, 1])))
+    chain = kfs.prod_exp(t, np.array(thetas))
+    gst_0 = np.vstack((np.hstack((R, [[q[0, 7]], [q[1, 7]], [q[2, 7]]])), np.array([0, 0, 0, 1])))
 
     return np.dot(chain, gst_0)
 

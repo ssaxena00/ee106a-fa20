@@ -1,2 +1,2 @@
-
+joint_ctrl:lab3
 -DCATKIN_DEVEL_PREFIX=/home/sahilsaxena/ros_workspaces/lab3/devel -DCMAKE_INSTALL_PREFIX=/home/sahilsaxena/ros_workspaces/lab3/install -G Unix Makefiles

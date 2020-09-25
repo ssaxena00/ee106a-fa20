@@ -189,21 +189,20 @@ def homog_3d(xi, theta):
     omega_hat = skew_3d(xi[3:6])    
     v = np.array(xi[0:3]).T
 
-    rot_mat = rotation_3d(xi[3:6], theta)    
-    omega_norm = np.linalg.norm(omega)
-
     I = np.identity(3)
-
-    term1 = np.dot((I - rot_mat), (np.dot(omega_hat, v)))
-    term2 = theta * np.dot(omega, np.dot(omega.T, v))
-    term = (term1 + term2) / (omega_norm**2)
-
     g = np.zeros((4,4))
 
     if np.allclose(omega, 0): 
         g[0:3, 0:3] = I
         g[0:3, 3] = theta * v
     else:
+        rot_mat = rotation_3d(xi[3:6], theta)    
+        omega_norm = np.linalg.norm(omega)
+
+        term1 = np.dot((I - rot_mat), (np.dot(omega_hat, v)))
+        term2 = theta * np.dot(omega, np.dot(omega.T, v))
+        term = (term1 + term2) / (omega_norm**2)
+
         g[0:3, 0:3] = rot_mat[0:3, 0:3]
         g[0:3, 3] = term.T
     

@@ -2,19 +2,27 @@
 
 #Import the dependencies as described in example_pub.py
 import rospy
-import foo
 import kin_func_skeleton as kfs
+from lab3 import lab3
 from sensor_msgs.msg import JointState
 
 #Define the callback method which is called whenever this node receives a 
 #message on its subscribed topic. The received message is passed as the 
 #first argument to callback().
 def callback(message):
-
     #Print the contents of the message to the console
-    positions = message.position[2:9]
-    corrected_positions = positions[2:4]+positions[0:2]+positions[4:]
-    matrix = foo.task2(corrected_positions)
+    positions = message.position
+    names = message.name
+    corrected_positions = [
+        positions[names.index('left_s0')], 
+        positions[names.index('left_s1')], 
+        positions[names.index('left_e0')], 
+        positions[names.index('left_e1')], 
+        positions[names.index('left_w0')], 
+        positions[names.index('left_w1')], 
+        positions[names.index('left_w2')]
+    ]
+    matrix = lab3(corrected_positions)
     print(str(matrix))
 
 #Define the method which contains the node's main functionality
@@ -31,7 +39,7 @@ def listener():
     #use to receive messages of type std_msgs/String from the topic /chatter_talk.
     #Whenever a new message is received, the method callback() will be called
     #with the received message as its first argument.
-    rospy.Subscriber("robot/joint_states",JointState, callback)
+    rospy.Subscriber("robot/joint_states", JointState, callback)
 
 
     #Wait for messages to arrive on the subscribed topics, and exit the node
