@@ -40,7 +40,7 @@ def lab3(thetas):
         t[:,i][3:6] = w[0:3, i]
 
     chain = kfs.prod_exp(t, thetas)
-    gst_0 = np.vstack((np.hstack((R, [[q[0, 0], q[1, 0], q[2, 0]]])), np.array([0, 0, 0, 1])))
+    gst_0 = np.vstack((np.hstack((R, q[0:3,7])), np.array([0, 0, 0, 1])))
 
     return np.dot(chain, gst_0)
 
