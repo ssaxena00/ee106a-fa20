@@ -1,0 +1,2 @@
+lab4_starter
+-DCATKIN_DEVEL_PREFIX=/home/sahilsaxena/ros_workspaces/lab4/devel -DCMAKE_INSTALL_PREFIX=/home/sahilsaxena/ros_workspaces/lab4/install -G Unix Makefiles
