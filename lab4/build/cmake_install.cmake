@@ -126,7 +126,16 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/sahilsaxena/ros_workspaces/lab4/build/gtest/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_launchers/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_msgs/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_resources/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_simulator/cmake_install.cmake")
   include("/home/sahilsaxena/ros_workspaces/lab4/build/lab4_starter/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_parser/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_robot/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_samples/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_server/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab4/build/stdr_simulator/stdr_gui/cmake_install.cmake")
 
 endif()
 
