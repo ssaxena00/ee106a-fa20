@@ -2,4 +2,4 @@
 source_root_dir = "/home/sahilsaxena/ros_workspaces/lab4/src"
 whitelisted_packages = "".split(';') if "" != "" else []
 blacklisted_packages = "".split(';') if "" != "" else []
-underlay_workspaces = "/home/sahilsaxena/ros_workspaces/lab4/devel;/home/sahilsaxena/rethink_ws/devel;/opt/ros/kinetic".split(';') if "/home/sahilsaxena/ros_workspaces/lab4/devel;/home/sahilsaxena/rethink_ws/devel;/opt/ros/kinetic" != "" else []
+underlay_workspaces = "/home/sahilsaxena/rethink_ws/devel;/opt/ros/kinetic".split(';') if "/home/sahilsaxena/rethink_ws/devel;/opt/ros/kinetic" != "" else []

@@ -4129,6 +4129,24 @@ clean: stdr_simulator/stdr_parser/CMakeFiles/stdr_parser.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory stdr_teleop
+
+# Convenience name for "all" pass in the directory.
+stdr_teleop/all:
+
+.PHONY : stdr_teleop/all
+
+# Convenience name for "clean" pass in the directory.
+stdr_teleop/clean:
+
+.PHONY : stdr_teleop/clean
+
+# Convenience name for "preinstall" pass in the directory.
+stdr_teleop/preinstall:
+
+.PHONY : stdr_teleop/preinstall
+
+#=============================================================================
 # Directory level rules for directory stdr_simulator/stdr_robot
 
 # Convenience name for "all" pass in the directory.
