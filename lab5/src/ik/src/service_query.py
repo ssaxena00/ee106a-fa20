@@ -3,6 +3,8 @@ import rospy
 from moveit_msgs.srv import GetPositionIK, GetPositionIKRequest, GetPositionIKResponse
 from geometry_msgs.msg import PoseStamped
 
+#  0.25113468792841454, -0.33453669605931813, -2.075944809186843, 1.426133955236828, 1.2671436120520174, 2.094, -0.5585831807137558
+
 def main():
     #Wait for the IK service to become available
     rospy.wait_for_service('compute_ik')

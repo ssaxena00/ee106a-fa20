@@ -33,18 +33,12 @@ def listener():
     #name, which ROS doesn't allow.
     rospy.init_node('listener', anonymous=True)
 
-    # angle_names = ['left_s0', 'left_s1', 'left_e0', 'left_e1', 'left_w0', 'left_w1', 'left_w2']
-    # print('Enter a list of 7 joint angles')
-    # positions = {}
-    # corrected_positions = []
-    # for i in range(7):
-    #     angle = float(raw_input('Angle %s: ' % angle_names[i]))
-    #     positions[angle_names[i]] = angle
-    #     corrected_positions.append(angle)
-    
+    # ['left_s0', 'left_s1', 'left_e0', 'left_e1', 'left_w0', 'left_w1', 'left_w2']
+    angles = raw_input('Enter a list of 7 joint angles: \n').split(', ')
+    corrected_positions = [float(s) for s in angles]
     trial = [ 0.25113468792841454, -0.33453669605931813, -2.075944809186843, 1.426133955236828, 1.2671436120520174, 2.094, -0.5585831807137558]
 
-    matrix = lab3(trial)
+    matrix = lab3(corrected_positions)
     print(str(matrix))
 
     #Wait for messages to arrive on the subscribed topics, and exit the node
