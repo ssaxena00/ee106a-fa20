@@ -1,2 +1,2 @@
-ik
+ik:planning
 -DCATKIN_DEVEL_PREFIX=/home/sahilsaxena/ros_workspaces/lab5/devel -DCMAKE_INSTALL_PREFIX=/home/sahilsaxena/ros_workspaces/lab5/install -G Unix Makefiles

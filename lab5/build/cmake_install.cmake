@@ -127,6 +127,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/sahilsaxena/ros_workspaces/lab5/build/gtest/cmake_install.cmake")
   include("/home/sahilsaxena/ros_workspaces/lab5/build/ik/cmake_install.cmake")
+  include("/home/sahilsaxena/ros_workspaces/lab5/build/planning/cmake_install.cmake")
 
 endif()
 
