@@ -44,8 +44,8 @@ def main():
     #YOUR CODE HERE
     #Have a user input a specified start position for the first four angles
     #raw_input() might be useful to look at here
-    angles = raw_input('Enter a list of first 4 angles for start state:\n').split(', ')
-    s_angs = [float(s) for s in angles]
+    angles = raw_input('List of first 4 angles for start state (0 - 100):\n').split(', ')
+    s_angs = [float(s)/100 for s in angles]
     goal.request.start_state.joint_state.position = s_angs + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     goal.request.start_state.joint_state.velocity = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     
@@ -60,8 +60,8 @@ def main():
     #YOUR CODE HERE
     #Have a user input a specified target position for the first four angles
     #raw_input() might be useful to look at here
-    angles = raw_input('Enter a list of first 4 angles for start state:\n').split(', ')
-    g_angs = [float(s) for s in angles]
+    angles = raw_input('List of first 4 angles for goal state (0 - 100):\n').split(', ')
+    g_angs = [float(s)/100 for s in angles]
     target_joint_angles = g_angs + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     tolerance = 0.0001
     consts = []
