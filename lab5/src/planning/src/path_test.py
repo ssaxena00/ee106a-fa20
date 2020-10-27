@@ -17,7 +17,7 @@ from geometry_msgs.msg import PoseStamped
 from path_planner import PathPlanner
 
 # Uncomment this line for part 5 of Lab 5
-# from controller import Controller
+from controller import Controller
 
 
 def main():
@@ -35,22 +35,22 @@ def main():
     Kw = np.array([0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]) # Untuned
 
 	# Initialize the controller for Part 5
-	# controller = Controller( . . . )
+    controller = Controller(Kp, Ki, Kd, Kw, Limb("right"))
 
     #-----------------------------------------------------#
     ## Add any obstacles to the planning scene here
-    box = PoseStamped()
-    box.header.frame_id = "box"
-    box.header.stamp.secs = 10.0
-    box.pose.position.x = 0.5
-    box.pose.position.y = 0.0
-    box.pose.position.z = 0.0
-    box.pose.orientation.x = 0.0
-    box.pose.orientation.y = 0.0
-    box.pose.orientation.z = 0.0
-    box.pose.orientation.w = 1.0
-    planner.add_box_obstacle(np.array([0.4, 1.2, 0.1]), "box", box)
-    print('PoseStamped box:', box)
+    # box = PoseStamped()
+    # box.header.frame_id = "box"
+    # box.header.stamp.secs = 10.0
+    # box.pose.position.x = 0.5
+    # box.pose.position.y = 0.0
+    # box.pose.position.z = 0.0
+    # box.pose.orientation.x = 0.0
+    # box.pose.orientation.y = 0.0
+    # box.pose.orientation.z = 0.0
+    # box.pose.orientation.w = 1.0
+    # planner.add_box_obstacle(np.array([0.4, 1.2, 0.1]), "box", box)
+    # print('PoseStamped box:', box)
     #-----------------------------------------------------#
 
     # #Create a path constraint for the arm
@@ -86,7 +86,8 @@ def main():
                 raw_input("Press <Enter> to move the right arm to goal pose: ")
 
                 # Might have to edit this for part 5
-                if not planner.execute_plan(plan):
+                # if not planner.execute_plan(plan):
+                if not controller.execute_plan(plan):
                     raise Exception("Execution failed")
             except Exception as e:
                 print e
@@ -97,7 +98,7 @@ def main():
 
     while not rospy.is_shutdown():
 
-    # Set your goal positions here
+        # Set your goal positions here
     	move_to_goal(0.47, -0.85, 0.07)
         move_to_goal(0.6, -0.3, 0.0)
         move_to_goal(0.6, -0.1, 0.1)

@@ -120,7 +120,7 @@ def main():
         rospy.sleep(0.1)
 
         print('moving to 2nd goal with constraint and close..')
-        move_to_goal(0.4225, -0.0765, -0.14, [orien_const])
+        move_to_goal(0.4225, -0.0565, -0.14, [orien_const])
         right_gripper.close()
         rospy.sleep(0.1)
 
