@@ -1,0 +1,8 @@
+prefix=/home/sahilsaxena/ros_workspaces/lab7/install
+
+Name: stereo_pointcloud
+Description: Description of stereo_pointcloud
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

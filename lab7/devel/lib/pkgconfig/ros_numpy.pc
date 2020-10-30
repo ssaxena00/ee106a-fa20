@@ -1,0 +1,8 @@
+prefix=/home/sahilsaxena/ros_workspaces/lab7/devel
+
+Name: ros_numpy
+Description: Description of ros_numpy
+Version: 0.0.4
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
