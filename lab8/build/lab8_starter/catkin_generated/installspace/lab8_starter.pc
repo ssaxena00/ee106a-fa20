@@ -1,0 +1,8 @@
+prefix=/home/sahilsaxena/ros_workspaces/lab8/install
+
+Name: lab8_starter
+Description: Description of lab8_starter
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib -llab8_starter
+Requires: rospy visualization_msgs geometry_msgs std_msgs tf2_ros
